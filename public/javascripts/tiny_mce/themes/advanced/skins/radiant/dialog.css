@@ -14,23 +14,23 @@ padding:0;
 margin:8px 8px 0 8px;
 }
 
-html {background:#F0F0EE;}
+html {background:#fff;}
 td {font-family: "Lucida Grande", "Bitstream Vera Sans", Helvetica, Verdana, Arial, sans-serif;font-size: 85%;}
 textarea {resize:none;outline:none;}
-a:link, a:visited {color:black;}
-a:hover {color:#2B6FB6;}
+/*a:link, a:visited {color:black;}
+a:hover {color:#2B6FB6;}*/
 
 /* Forms */
-fieldset {margin:0; padding:4px; border:1px solid #919B9C; font-family: "Lucida Grande", "Bitstream Vera Sans", Helvetica, Verdana, Arial, sans-serif;font-size: 85%;}
+fieldset {margin:0; padding:4px; border:1px solid #ccc; font-family: "Lucida Grande", "Bitstream Vera Sans", Helvetica, Verdana, Arial, sans-serif;font-size: 85%;}
 legend {color:#2B6FB6; font-weight:bold;}
 label.msg {display:none;}
-label.invalid {color:#EE0000; display:inline;}
-input.invalid {border:1px solid #EE0000;}
-input {background:#FFF; border:1px solid #CCC;}
-input, select, textarea {font-family:Verdana, Arial, Helvetica, sans-serif; font-size:10px;}
-input, select, textarea {border:1px solid #808080;}
-input.radio {border:1px none #000000; background:transparent; vertical-align:middle;}
-input.checkbox {border:1px none #000000; background:transparent; vertical-align:middle;}
+label.invalid {/*color:#EE0000;*/ display:inline;}
+input.invalid {/*border:1px solid #EE0000;*/}
+input {/*background:#FFF; border:1px solid #CCC;*/}
+input, select, textarea {/*font-family:Verdana, Arial, Helvetica, sans-serif; font-size:10px;*/}
+input, select, textarea {/*border:1px solid #808080;*/}
+input.radio {/*border:1px none #000000; background:transparent;*/ vertical-align:middle;}
+input.checkbox {/*border:1px none #000000; background:transparent; */vertical-align:middle;}
 .input_noborder {border:0;}
 
 /* Buttons */
@@ -38,13 +38,12 @@ input.checkbox {border:1px none #000000; background:transparent; vertical-align:
 border:0; margin:0; padding:0;
 font-weight:bold;
 width:94px; height:26px;
-background:url(img/buttons.png) 0 -26px;
 cursor:pointer;
 padding-bottom:2px;
 }
 
-#insert {background:url(img/buttons.png) 0 -52px;}
-#cancel {background:url(img/buttons.png) 0 0;}
+/*#insert {background:url(img/buttons.png) 0 -52px;}
+#cancel {background:url(img/buttons.png) 0 0;}*/
 
 /* Browse */
 a.browse span {display:block; width:20px; height:18px; background:url(../../img/icons.gif) -860px 0; border:1px solid #FFF; margin-left:1px;}
@@ -70,12 +69,12 @@ td.charmap, #charmap a {width:18px; height:18px; color:#000; border:1px solid #A
 .mceActionPanel {margin-top:5px;}
 
 /* Tabs classes */
-.tabs {width:100%; height:18px; line-height:normal; background:#c00}
+.tabs {width:100%; height:18px; line-height:normal; background:#FFF}
 .tabs ul {margin:0; padding:0; list-style:none;}
-.tabs li {float:left; background:#eae3c5; margin:0 2px 0 0; padding:0 0 0 10px; line-height:17px; height:18px; display:block;}
-.tabs li.current {background:#fff; margin-right:2px;}
-.tabs span {float:left; display:block; background:#eae3c5; padding:0px 10px 0 0;}
-.tabs .current span {background:#fff;}
+.tabs li {float:left; background:#F5F1E2; border-style:solid; border-width: 1px; border-color:#F5F1E2 #F5F1E2 #CDC295; margin:0 2px 0 0; padding:0 0 0 10px; line-height:17px; height:18px; display:block;}
+.tabs li.current {background:#EAE3C5; border-style:solid; border-width: 1px; border-color:#CDC295 #CDC295 #CDC295 #CDC295; margin-right:2px; }
+.tabs span {float:left; display:block; background:#F5F1E2; padding:0px 10px 0 0;}
+.tabs .current span {background: #EAE3C5;}
 .tabs a {text-decoration:none; font-family: "Lucida Grande", "Bitstream Vera Sans", Helvetica, Verdana, Arial, sans-serif;font-size: 85%;}
 .tabs a:link, .tabs a:visited, .tabs a:hover {color:black;}
 

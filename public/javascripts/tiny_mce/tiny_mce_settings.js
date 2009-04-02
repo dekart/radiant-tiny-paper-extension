@@ -3,6 +3,8 @@ tinyMCE.init({
   editor_deselector : "noMceEditor",
   mode : "textareas",
   theme : "advanced",
+  skin : "radiant",
+  inlinepopups_skin : "radiant",
   // plugins : "safari,spellchecker,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,codeprotect,inlinepopups",
   plugins : "safari,style,table,save,advimage,advlink,emotions,inlinepopups,insertdatetime,preview,searchreplace,contextmenu,paste,fullscreen,nonbreaking,xhtmlxtras,codeprotect,inlinepopups",
   theme_advanced_buttons1 : "save,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,formatselect,|,forecolor,backcolor,|,nonbreaking,cite,abbr,acronym,del,ins,attribs,blockquote,",
