@@ -3,7 +3,7 @@
 .clearfix                         {display:block;}
 
 /* top */
-#tp_top                           {background-color:#ccc;border:1px solid #000;padding:10px;margin-bottom:10px;}
+#tp_top                           {background-color:#fff; padding:10px;margin-bottom:10px;}
 #tp_top p                         {margin:0;padding:0;}
 #tp_tb                            {background-color:#fff;border:1px solid #808080;width:147px;}
 #reset                            {background:transparent url(/images/admin/reset.png) no-repeat right center;
@@ -13,7 +13,7 @@
 
 /* sidebar */
 #tp_sidebar                       {width:25%;float:left;}
-#tp_sidebar div                   {background-color:#ccc;margin:5px;padding:5px;}
+#tp_sidebar div                   {background-color:#EAE3C5;margin-bottom:10px;padding:5px;}
 #tp_sidebar a                     {text-decoration:none;}
 #tp_sidebar a:hover               {text-decoration:underline;}
 #tp_sidebar a.filtered            {font-weight:bold;color:#2B6FB6;text-decoration:underline;}
