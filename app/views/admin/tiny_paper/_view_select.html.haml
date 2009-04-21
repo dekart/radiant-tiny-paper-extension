@@ -1,0 +1,11 @@
+#ddl.clearfix
+  #view_mode
+    - form_tag({}, {:id => "tp_view_mode", :method => :get}) do
+      = hidden_field_tag :page, '1'
+      %label{:for => :view} View mode:
+      = select_tag :view, options_for_select([["Text List", "text_list"], ["Thumbnails", "thumbnails"]], params[:view])
+  #sort_dv
+    - form_tag({}, {:id => "tp_sort", :method => :get}) do
+      = hidden_field_tag :sort_by, 'title'
+      %label{:for => :sort_order} Sort by title:
+      = select_tag :sort_order, options_for_select([["Ascending", "asc"], ["Descending", "desc"]], params[:sort_order])

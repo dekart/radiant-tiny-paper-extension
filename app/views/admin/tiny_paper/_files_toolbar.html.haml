@@ -1,0 +1,30 @@
+- render_region :preamble do |preamble|
+
+  - preamble.header {}
+  - preamble.explanation {}
+  - preamble.new_button {}
+
+  - preamble.filters do        
+    %p
+
+      - form_tag({:controller => :tiny_paper, :action => 'files'},:id => 'filesearchform', :method => 'get', :onsubmit => 'return false;') do
+
+        %span
+          = link_to "Images", "#"
+        %span
+          = link_to "Others", "#"
+        %span
+          = link_to "Audio", "#"
+        %span
+          = link_to "Movies", "#"
+
+        #type_boxes{ :style => "display: none" }
+          = check_box_tag 'filter[audio]',  '1', false, :id => 'audio-check' 
+          = check_box_tag 'filter[image]',  '1', false, :id => 'images-check' 
+          = check_box_tag 'filter[other]',  '1', false, :id => 'others-check' 
+          = check_box_tag 'filter[movie]',  '1', false, :id => 'movies-check'
+          
+        %input{ :type => "text", :id => "search", :name => "search" }
+        = observe_field 'search',  :frequency => 1, :update => 'assets_table', :url => {:controller => :tiny_paper, :action => 'files'}, :method => 'get', :with => "'search=' + escape(value)"
+
+        = render :partial => "assets/javascripts"

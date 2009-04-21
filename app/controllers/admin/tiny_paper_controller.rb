@@ -5,15 +5,14 @@ class Admin::TinyPaperController < ApplicationController
   
   def images
     attach_js_css
-    filter_by_params([:view, :size])
-    list_params[:images] = 'images'
-    @assets = Asset.assets_paginate(list_params)
+    params[:view] ||= 'thumbnails'
+    @assets = Asset.search(params['search'], {'image' => true}, params['page'])
     @thumbnails = Asset.attachment_definitions[:asset][:styles]
 
     respond_to do |f|
       f.html { render }
       f.js { 
-        if list_params[:view] == "thumbnails"
+        if params[:view] == "thumbnails"
           render :partial => 'images_images.html.haml', :layout => false
         else
           render :partial => 'images_titles.html.haml', :layout => false
@@ -24,9 +23,8 @@ class Admin::TinyPaperController < ApplicationController
   
   def files
     attach_js_css
-    filter_by_params
-    @assets = Asset.assets_paginate(list_params)
-    
+    # filter_by_params
+    @assets = Asset.search(params['search'], params['filter'], params['page'])    
     respond_to do |f|
       f.html { render }
       f.js { render :partial => 'files_titles.html.haml', :layout => false }

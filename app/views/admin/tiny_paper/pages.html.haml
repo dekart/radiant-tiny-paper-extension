@@ -5,12 +5,11 @@
         %a{:id => 'files_link', :href => files_path} Files
       %li
         %a{:id => 'pages_link', :href => pages_path, :class => "selected"} Pages
+      
+  #tp_toolbar
     %p Choose a page to create a direct link to it:
-  #tp_top_round
-    #tp_top_round_inside
-  #tp_hd
-    #tp_content_files
-      #tp_assets
-        %ul
-          = page_list (@homepage)
-  = hidden_field_tag(:type, 'pages')
+
+  = show_flash_message
+
+  #tp_bd.clearfix
+    = render :partial => "pages_titles"

@@ -20,6 +20,14 @@ class TinyPaperExtension < Radiant::Extension
     TinyMceFilter
     Asset.class_eval { include TinyPaper::AssetExtensions }
     Admin::PagesController.class_eval { include TinyPaper::AddJavascriptsAndStyles }
+    Radiant::AdminUI.class_eval do      
+      attr_accessor :tiny_paper
+    end
+    unless defined? admin.tiny_paper.index
+      Radiant::AdminUI.send :include, AssetsAdminUI      
+      admin.tiny_paper = Radiant::AdminUI.load_default_asset_regions   # UI is a singleton and already loaded
+      admin.tiny_paper.images = admin.tiny_paper.files = admin.tiny_paper.pages = admin.tiny_paper.index
+    end
         
   	admin.page.edit.add :part_controls, "admin/page/tiny_mce_control"
   end

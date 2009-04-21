@@ -1,0 +1,13 @@
+- render_region :preamble do |preamble|
+
+  - preamble.header {}
+  - preamble.explanation {}
+  - preamble.new_button {}
+
+  - preamble.filters do        
+    %p
+      - form_tag({:controller => :tiny_paper, :action => 'images'},:id => 'filesearchform', :method => 'get', :onsubmit => 'return false;') do
+
+        %label Search
+        %input{ :type => "text", :id => "search", :name => "search" }
+        = observe_field 'search',  :frequency => 1, :update => 'assets_table', :url => {:controller => :tiny_paper, :action => 'images'}, :method => 'get', :with => "'search=' + escape(value)"
