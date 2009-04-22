@@ -14,11 +14,11 @@ describe Admin::TinyPaperController do
       @assets = (1..10).map { |i| mock_model(Asset)}
       @thumbnails =  {:asset => {:styles => {:thumbnail=>["100x100>", :png], :icon=>["42x42#", :png], :normal=>"640x640>"}}}
       
-      Asset.stub!(:assets_paginate).and_return(@assets)
+      Asset.stub!(:search).and_return(@assets)
       Asset.stub!(:attachment_definitions).and_return(@thumbnails)
       
-      @list_params = {:view => "thumbnails"}
-      controller.stub!(:list_params).and_return(@list_params)
+      # @list_params = {:view => "thumbnails"}
+      # controller.stub!(:list_params).and_return(@list_params)
     end
     
     def do_http_get
@@ -39,13 +39,8 @@ describe Admin::TinyPaperController do
       response.should render_template(:images)
     end
     
-    it "parses list_params" do
-      controller.should_receive(:filter_by_params).with([:view, :size])
-      do_http_get
-    end
-    
     it "finds all assets with list params" do
-      Asset.should_receive(:assets_paginate).with(@list_params).and_return(@assets)
+      Asset.should_receive(:search).with(nil, {"image" => true}, nil).and_return(@assets)
       do_http_get
     end
     
@@ -69,10 +64,10 @@ describe Admin::TinyPaperController do
     before do
       @assets = (1..10).map { |i| mock_model(Asset)}
       
-      Asset.stub!(:assets_paginate).and_return(@assets)
+      Asset.stub!(:search).and_return(@assets)
       
-      @list_params = {:view => "thumbnails"}
-      controller.stub!(:list_params).and_return(@list_params)
+      # @list_params = {:view => "thumbnails"}
+      # controller.stub!(:list_params).and_return(@list_params)
     end
     
     def do_http_get
@@ -93,13 +88,8 @@ describe Admin::TinyPaperController do
       response.should render_template(:files)
     end
     
-    it "parses list_params" do
-      controller.should_receive(:filter_by_params).with()
-      do_http_get
-    end
-    
     it "finds all assets with list params" do
-      Asset.should_receive(:assets_paginate).with(@list_params).and_return(@assets)
+      Asset.should_receive(:search).with(nil, nil, nil).and_return(@assets)
       do_http_get
     end
     
