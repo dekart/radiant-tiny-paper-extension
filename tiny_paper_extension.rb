@@ -4,7 +4,7 @@
 class TinyPaperExtension < Radiant::Extension
   version "0.9"
   description "Radiand CMS Tiny MCE support using Paperclipped assets"
-  url "http://blog.aissac.ro/radiant/tiny-paper-extension/"
+  url "http://github.com/p8/radiant-tiny-paper-extension/tree/master"
 
   define_routes do |map|
     map.with_options(:controller => 'admin/tiny_paper') do |asset|

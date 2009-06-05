@@ -1,3 +1,9 @@
+FORK INFO
+---
+
+This fork uses the File search and filtering from Paperclipped for a more consistent UI.
+The TinyMCE layout look more Radiant like as well.
+
 Radiant Tiny-Paper Extension
 ===
 
