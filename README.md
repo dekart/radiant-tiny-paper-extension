@@ -2,7 +2,7 @@ FORK INFO
 ---
 
 This fork uses the File search and filtering from Paperclipped for a more consistent UI.
-The TinyMCE layout look more Radiant like as well.
+The TinyMCE layout looks more like Radiant as well.
 
 Radiant Tiny-Paper Extension
 ===
@@ -50,7 +50,7 @@ You may also want to install the [Settings Extension][settings] since it provide
 
 Finally, install the [Tiny-Paper Extension][tp]
 
-    git submodule add git://github.com/Aissac/radiant-tiny-paper-extension.git\
+    git submodule add git://github.com/p8/radiant-tiny-paper-extension.git\
       vendor/extensions/tiny_paper
 
 For more information about installing and configuring Settings and Paperclipped check the extensions official pages.
