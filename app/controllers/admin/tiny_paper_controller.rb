@@ -25,7 +25,7 @@ class Admin::TinyPaperController < ApplicationController
   def files
     attach_js_css
     filter_by_params
-    @assets = Asset.paginate(asset_pagination_options.merge(list_params))
+    @assets = Asset.paginate(asset_pagination_options)
     
     respond_to do |f|
       f.html { render }
