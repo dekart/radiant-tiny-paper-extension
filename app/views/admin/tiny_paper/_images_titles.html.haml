@@ -1,13 +1,11 @@
-#assets_table.clearfix
-  #tp_middle.clearfix
-    #tp_pages
+#ajax_update.clearfix
+  #middle.clearfix
+    #pagination
       = will_paginate @assets, :inner_window => 1, :outer_window => 0
-    
     = render :partial => 'view_select'
-    
-  #tp_titles_holder
+  #titles_holder
     - index = (list_params[:page].to_i - 1) * 25
-    %table#tp_assets.tp_assets_list
+    %table#assets.assets_list
       %thead
         %tr
           %th No.
@@ -21,8 +19,8 @@
             %td
               %a{:href => '#'} 
                 = asset.title
-                %span{:class => "tp_image_sizes", :style => "display:none;"}
-                  = render :partial => 'images_sizes', :locals => {:asset => asset}
+              %span.image_sizes{:style => "display:none;"}
+                = render :partial => 'images_sizes', :locals => {:asset => asset}
             %td= asset.width.to_s + 'px x ' + asset.height.to_s + 'px'
         -if @assets.empty?
           %tr

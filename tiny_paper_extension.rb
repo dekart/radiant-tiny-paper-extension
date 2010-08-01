@@ -1,5 +1,4 @@
-# Uncomment this if you reference any of your controllers in activate
-# require_dependency 'application'
+require_dependency 'application_controller'
 
 class TinyPaperExtension < Radiant::Extension
   version "0.9"
@@ -19,6 +18,7 @@ class TinyPaperExtension < Radiant::Extension
   def activate
     TinyMceFilter
     Asset.class_eval { include TinyPaper::AssetExtensions }
+
     Admin::PagesController.class_eval { include TinyPaper::AddJavascriptsAndStyles }
     Radiant::AdminUI.class_eval do      
       attr_accessor :tiny_paper
@@ -30,10 +30,9 @@ class TinyPaperExtension < Radiant::Extension
     end
         
   	admin.page.edit.add :part_controls, "admin/page/tiny_mce_control"
+    # admin.page.edit.add :part_controls, "tiny_mce_control"
   end
   
   def deactivate
-    # admin.tabs.remove "Tiny Paper"
   end
-  
 end

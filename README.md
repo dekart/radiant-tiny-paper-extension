@@ -12,7 +12,7 @@ About
 
 An extension by [Aissac][ai] that adds [Paperclipped][paperclipped] based [Tiny MCE][tinymce] support to [Radiant CMS][rd]. This extension provides a `Rich Text Editor` filter and allows you to edit the content using the TinyMCE editor. It also provides an Image and File browser to help you manage the Paperclipped assets.
 
-The Tiny-Paper Extension is Radiant 0.7.1 compatible.
+Tested on Radiant 0.7.1, 0.8 and 0.9 RC2.
 
 Features
 ---
@@ -24,20 +24,36 @@ Features
 * Thumbnails and text list views;
 * Directly add a link to a Radiant Page from TinyMce editor.
 
+Important Notice!
+---
+
+The git branches of this repository hold stable versions of the extension for older versions of Radiant CMS. For example the _0.8_ branch is compatible with Radiant 0.8. 
+
+To checkout one of these branches:
+
+    git clone git://github.com/Aissac/radiant-tiny-paper-extension.git vendor/extensions/tiny_paper
+    cd vendor/extensions/tiny_paper
+    git checkout -b <branch-name> origin/<remote-branch-name>
+
+As an example, if you're working on Radiant 0.8 you will need to checkout the 0.8 branch:
+    
+    cd vendor/extensions/tiny_paper
+    git checkout -b my_branch origin/0.8
+    
+Also, be sure to checkout a version of the Paperclipped extension that is compatible with the Radiant version you're working on.
+
 Installation
 ---
 
 Tiny-Paper Extension has two dependencies, the Paperclipped extension and the will\_paginate gem/plugin.
 
-Install the [Paperclipped Extension][paperclipped]
+Install the [Paperclipped Extension][paperclipped] (be sure to checkout a version of Paperclipped compatible with the Radiant version you're working on.)
 
-    git submodule add git://github.com/kbingman/paperclipped.git\
-      vendor/extensions/paperclipped
+    git clone git://github.com/kbingman/paperclipped.git vendor/extensions/paperclipped
     
 And the will\_paginate gem/plugin:
 
-    git submodule add git://github.com/mislav/will_paginate.git\
-      vendor/plugins/will_paginate
+    git clone git://github.com/mislav/will_paginate.git vendor/plugins/will_paginate
 
 or
 
@@ -45,13 +61,11 @@ or
 
 You may also want to install the [Settings Extension][settings] since it provides a very convenient way to configure thumbnail sizes for image assets:
 
-    git submodule add git://github.com/Squeegy/radiant-settings.git\
-      vendor/extensions/settings
+    git clone git://github.com/Squeegy/radiant-settings.git vendor/extensions/settings
 
 Finally, install the [Tiny-Paper Extension][tp]
 
-    git submodule add git://github.com/p8/radiant-tiny-paper-extension.git\
-      vendor/extensions/tiny_paper
+    git clone git://github.com/p8/radiant-tiny-paper-extension.git vendor/extensions/tiny_paper
 
 For more information about installing and configuring Settings and Paperclipped check the extensions official pages.
     
@@ -83,8 +97,8 @@ The File Browser can be accessed through the `insert/edit link` icon and has two
 Contributors
 ---
 
-* Cristi Duma
-* Istvan Hoka
+* Cristi Duma ([@cristi_duma][cd])
+* Istvan Hoka ([@ihoka][ih])
 
 [ai]: http://aissac.ro/
 [rd]: http://radiantcms.org/
@@ -92,3 +106,5 @@ Contributors
 [paperclipped]: http://github.com/kbingman/paperclipped/tree/master
 [tp]: http://blog.aissac.ro/radiant/tiny-paper-extension/
 [tinymce]: http://tinymce.moxiecode.com/
+[cd]: http://twitter.com/cristi_duma
+[ih]: http://twitter.com/ihoka

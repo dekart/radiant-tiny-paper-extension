@@ -5,7 +5,7 @@ describe Admin::TinyPaperController do
   dataset :users
   
   before do
-    login_as :developer
+    login_as :existing
   end
   
   describe "handling GET images" do
@@ -165,12 +165,12 @@ describe Admin::TinyPaperController do
 
     [:images, :files, :pages].each do |action|
       it "#{action} includes javascripts" do
-        ['tiny_mce/tiny_mce_popup','admin/tiny_paper','controls'].each do |js|
+        ['admin/prototype', 'admin/effects','admin/controls', 'tiny_mce/tiny_mce_popup', 'admin/tiny_paper'].each do |js|
           controller.should_receive(:include_javascript).with(js)
         end
           get action
       end
-      
+
       it "#{action} includes stylesheets" do
         controller.should_receive(:include_stylesheet).with("admin/tiny_paper")
         get action
@@ -193,7 +193,7 @@ describe Admin::TinyPaperController do
     end
     
     def set_cookie(key, value)
-      request.cookies[key] = CGI::Cookie.new('name' => key, 'value' => value)
+      request.cookies[key] = value
     end
     
     it "should take arbitrary params" do
@@ -213,21 +213,21 @@ describe Admin::TinyPaperController do
       set_cookie('page', '98')
       do_get(:page => '99')
       filter_by_params
-      list_params[:page].should == '99'
+      list_params[:page].should == "99"
     end
     
     it "should update cookies with new values" do
       set_cookie('page', '98')
       do_get(:page => '99')
       filter_by_params
-      response.cookies['page'].should == ['99']
+      response.cookies['page'].should == '99'
     end
     
     it "should reset list_params when params[:reset] == 1" do
       set_cookie('page', '98')
       do_get(:reset => 1)
       filter_by_params
-      response.cookies['page'].should == ["1"]
+      response.cookies['page'].should == "1"
     end
     it "should set params[:page] if loading from cookies (required for will_paginate to work)" do
       set_cookie('page', '98')
