@@ -9,6 +9,10 @@ class Admin::TinyPaperController < ApplicationController
     @assets = Asset.search(params['search'], {'image' => true}, params['page'])
     @thumbnails = Asset.attachment_definitions[:asset][:styles]
 
+    filter_by_params([:view, :size])
+    list_params[:images] = 'images'
+    @assets = Asset.paginate(asset_pagination_options)
+
     respond_to do |f|
       f.html { render }
       f.js { 
@@ -21,10 +25,11 @@ class Admin::TinyPaperController < ApplicationController
     end
   end
   
+  
   def files
     attach_js_css
-    # filter_by_params
-    @assets = Asset.search(params['search'], params['filter'], params['page'])    
+    filter_by_params
+    @assets = Asset.paginate(asset_pagination_options)
     respond_to do |f|
       f.html { render }
       f.js { render :partial => 'files_titles.html.haml', :layout => false }
@@ -53,6 +58,26 @@ class Admin::TinyPaperController < ApplicationController
   helper_method :list_params
   
   protected
+  
+    def asset_pagination_options
+      options = {
+        :page => params[:page],
+        :per_page => 25,
+        :conditions => nil
+      }
+    
+      if ['title', 'asset_content_type'].include?(params[:sort_by]) && %w(asc desc).include?(params[:sort_order])
+        options[:order] = "#{params[:sort_by]} #{params[:sort_order]}"
+      end          
+    
+      if !params[:images].blank?
+        options[:per_page] = (params[:view] == "thumbnails") ? 15 : 25
+        options[:conditions] = ["asset_content_type IN (?)", Admin::TinyPaperController::WebImageTypes]
+      end
+
+      options
+    end
+
     def filter_by_params(args=[])
       args = args + DefaultParams
       args.each do |arg|
