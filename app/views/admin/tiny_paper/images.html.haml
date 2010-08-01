@@ -1,17 +1,8 @@
 #tiny_paper
   #top.clearfix
     .left
-<<<<<<< HEAD:app/views/admin/tiny_paper/images.html.haml
-      = render :partial => "images_toolbar"
-    .right
-      = render :partial => "upload"    
-    
-  = show_flash_message
+      -# = render :partial => "images_toolbar"
 
-  #tp_bd.clearfix
-    = render :partial => 'images_images' if params[:view] == "thumbnails"
-    = render :partial => 'images_titles' if params[:view] == "text_list"
-=======
       - form_tag({}, {:id => "filter_form", :method => :get}) do
         %table
           %tr
@@ -44,4 +35,3 @@
     = render :partial => 'images_images' if list_params[:view] == "thumbnails"
     = render :partial => 'images_titles' if list_params[:view] == "text_list"
   = hidden_field_tag(:type, "images")
->>>>>>> aissac/master:app/views/admin/tiny_paper/images.html.haml

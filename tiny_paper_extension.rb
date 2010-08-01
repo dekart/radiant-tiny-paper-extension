@@ -29,8 +29,8 @@ class TinyPaperExtension < Radiant::Extension
       admin.tiny_paper.images = admin.tiny_paper.files = admin.tiny_paper.pages = admin.tiny_paper.index
     end
         
-  	admin.page.edit.add :part_controls, "admin/page/tiny_mce_control"
-    # admin.page.edit.add :part_controls, "tiny_mce_control"
+    # admin.page.edit.add :part_controls, "admin/page/tiny_mce_control"
+    admin.page.edit.add :part_controls, "tiny_mce_control"
   end
   
   def deactivate

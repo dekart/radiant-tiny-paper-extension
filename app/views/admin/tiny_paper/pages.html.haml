@@ -1,20 +1,3 @@
-<<<<<<< HEAD:app/views/admin/tiny_paper/pages.html.haml
-#tp_body
-  #tp_top
-    %ul#tp_tabs.clearfix
-      %li
-        %a{:id => 'files_link', :href => files_path} Files
-      %li
-        %a{:id => 'pages_link', :href => pages_path, :class => "selected"} Pages
-      
-  #tp_toolbar
-    %p Choose a page to create a direct link to it:
-
-  = show_flash_message
-
-  #tp_bd.clearfix
-    = render :partial => "pages_titles"
-=======
 #tiny_paper
   #top.pages_list
     %ul.clearfix
@@ -27,4 +10,3 @@
         %ul
           = page_list (@homepage)
   = hidden_field_tag(:type, 'pages')
->>>>>>> aissac/master:app/views/admin/tiny_paper/pages.html.haml
