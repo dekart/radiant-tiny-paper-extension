@@ -89,7 +89,7 @@ describe Admin::TinyPaperController do
     end
     
     it "finds all assets with list params" do
-      Asset.should_receive(:search).with(nil, nil, nil).and_return(@assets)
+      Asset.should_receive(:search).with(nil, {}, nil).and_return(@assets)
       do_http_get
     end
     

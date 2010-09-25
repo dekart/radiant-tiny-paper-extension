@@ -3,9 +3,4 @@
     - form_tag({}, {:id => "view_mode_form", :method => :get}) do
       = hidden_field_tag :page, '1'
       %label{:for => :view} View mode:
-      = select_tag :view, options_for_select([["Text List", "text_list"], ["Thumbnails", "thumbnails"]],list_params[:view])
-  #sort_dv
-    - form_tag({}, {:id => "sort_form", :method => :get}) do
-      = hidden_field_tag :sort_by, 'title'
-      %label{:for => :sort_order} Sort by title:
-      = select_tag :sort_order, options_for_select([["Ascending", "asc"], ["Descending", "desc"]],list_params[:sort_order])
+      = select_tag :view, options_for_select([["Text List", "text_list"], ["Thumbnails", "thumbnails"]],params[:view])

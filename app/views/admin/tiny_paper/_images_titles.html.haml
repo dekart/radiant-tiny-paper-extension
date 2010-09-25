@@ -3,19 +3,15 @@
     #pagination
       = will_paginate @assets, :inner_window => 1, :outer_window => 0
     = render :partial => 'view_select'
-  #titles_holder
-    - index = (list_params[:page].to_i - 1) * 25
-    %table#assets.assets_list
+  #content
+    %table#assets.index
       %thead
         %tr
-          %th No.
           %th Image title
           %th Image size
       %tbody
         - @assets.each do |asset|
-          - index = index + 1
           %tr
-            %td.index= index
             %td
               %a{:href => '#'} 
                 = asset.title

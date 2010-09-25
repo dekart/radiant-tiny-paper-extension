@@ -1,10 +1,10 @@
 #tiny_paper
+  %ul#nav_tabs.clearfix
+    %li= link_to "Files", files_path, :class => "selected"
+    %li= link_to "Pages", pages_path
   #top.clearfix
     .left
-      -# = render :partial => "files_toolbar"
-      %ul.clearfix
-        %li= link_to "Files", files_path, :class => "selected"
-        %li= link_to "Pages", pages_path
+      - #= render :partial => "files_toolbar"
       - form_tag({}, {:id => "filter_form", :method => :get}) do
         %table
           %tr
@@ -12,7 +12,7 @@
               %label{:for => 'title'} Filter
             %td
               #filter
-                = text_field_tag :title, list_params[:title], :autocomplete => 'off'
+                = text_field_tag :title, params[:title], :autocomplete => 'off'
                 :javascript
                   new Form.Element.DelayedObserver('title', 0.4, function(element, value) {
                     when_starting();
@@ -34,3 +34,5 @@
 
   #tp_bd.clearfix
     = render :partial => "files_titles"
+  %p.close_link
+    = link_to "Cancel", "#", :onclick => "tinyMCEPopup.close(); return false"

@@ -4,16 +4,14 @@
       = will_paginate @assets, :inner_window => 1, :outer_window => 0
       = render :partial => 'view_select'
   #assets_holder
-    %ul#assets.asset_images.clearfix
-      - @assets.each do |asset|
-        %li
-          %a{:href => '#'}
-            %span.asset_image
-              %img{:src => asset.thumbnail(:thumbnail), :style => asset.height(:thumbnail) > 0 ? "padding-top:#{(95 - asset.height(:thumbnail))/2}px" : nil }
-            %span.asset_title
-              = truncate(asset.title, :length => 16)
-              
-          %span.image_sizes{:style => "display:none;"}
-            = render :partial => 'images_sizes', :locals => {:asset => asset}
-      -if @assets.empty?
-        %li.no_results No results!
+    -if @assets.empty?
+      .no_results No results!
+    - else
+      %ul#assets.asset_images.clearfix
+        - @assets.each do |asset|
+          %li
+            %a{:href => "#{asset.asset.url(:normal)}"}
+              .asset_title
+                = truncate(asset.title, :length => 16)
+              .asset
+                %img{:src => asset.thumbnail(:thumbnail) }

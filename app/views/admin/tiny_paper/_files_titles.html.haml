@@ -2,17 +2,16 @@
   #middle.clearfix
     #pagination
       = will_paginate @assets, :inner_window => 1, :outer_window => 0
-  #titles_holder
-    - index = (list_params[:page].to_i - 1) * 25
-    %table.assets_list
+    = render :partial => 'view_select'
+  #content
+    %table#assets.index
       %thead
         %tr
-          %th= sortable_column_head "File name", :title
-          %th= sortable_column_head "File type", :asset_content_type
+          %th File name
+          %th File type
           %th File size
       %tbody#assets
         - @assets.each do |asset|
-          - index = index + 1
           %tr
             %td= link_to asset.title, asset.asset.url
             %td= asset.asset_content_type

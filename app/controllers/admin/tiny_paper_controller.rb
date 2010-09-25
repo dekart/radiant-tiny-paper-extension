@@ -2,16 +2,11 @@ class Admin::TinyPaperController < ApplicationController
   layout "picker"
   WebImageTypes = %w( image/jpg image/jpeg image/gif image/png image/x-png )
   DefaultParams = [:title, :page, :sort_by, :sort_order]
-  
+  before_filter :attach_js_css 
   def images
-    attach_js_css
     params[:view] ||= 'thumbnails'
-    @assets = Asset.search(params['search'], {'image' => true}, params['page'])
+    @assets = Asset.search(params['search'], {'image' => true}, params['p'])
     @thumbnails = Asset.attachment_definitions[:asset][:styles]
-
-    filter_by_params([:view, :size])
-    list_params[:images] = 'images'
-    @assets = Asset.paginate(asset_pagination_options)
 
     respond_to do |f|
       f.html { render }
@@ -27,9 +22,7 @@ class Admin::TinyPaperController < ApplicationController
   
   
   def files
-    attach_js_css
-    filter_by_params
-    @assets = Asset.paginate(asset_pagination_options)
+    @assets = Asset.search(params['search'], {}, params['p'])
     respond_to do |f|
       f.html { render }
       f.js { render :partial => 'files_titles.html.haml', :layout => false }
@@ -37,7 +30,6 @@ class Admin::TinyPaperController < ApplicationController
   end
   
   def pages
-    attach_js_css
     @homepage = Page.find(:first, :conditions => {:parent_id => nil}, :include => :children)
   end
   
@@ -52,53 +44,8 @@ class Admin::TinyPaperController < ApplicationController
     end
   end
   
-  def list_params
-    @list_params ||= {}
-  end
-  helper_method :list_params
-  
   protected
   
-    def asset_pagination_options
-      options = {
-        :page => params[:page],
-        :per_page => 25,
-        :conditions => nil
-      }
-    
-      if ['title', 'asset_content_type'].include?(params[:sort_by]) && %w(asc desc).include?(params[:sort_order])
-        options[:order] = "#{params[:sort_by]} #{params[:sort_order]}"
-      end          
-    
-      if !params[:images].blank?
-        options[:per_page] = (params[:view] == "thumbnails") ? 15 : 25
-        options[:conditions] = ["asset_content_type IN (?)", Admin::TinyPaperController::WebImageTypes]
-      end
-
-      options
-    end
-
-    def filter_by_params(args=[])
-      args = args + DefaultParams
-      args.each do |arg|
-        list_params[arg] = params[:reset] ? params[arg] : params[arg] || cookies[arg]
-      end
-      list_params[:page] ||= "1"
-      list_params[:size] ||= "original"
-      list_params[:view] ||= "thumbnails"
-      
-      update_list_params_cookies(args)
-      
-      # for will_paginate
-      params[:page] = list_params[:page]
-    end
-  
-    def update_list_params_cookies(args)
-      args.each do |key|
-        cookies[key] = { :value => list_params[key], :path => "/#{controller_path}" }
-      end
-    end
-    
     def attach_js_css
       include_stylesheet "admin/tiny_paper"
       include_javascript "admin/prototype"

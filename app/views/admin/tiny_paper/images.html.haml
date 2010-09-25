@@ -7,20 +7,20 @@
         %table
           %tr
             %td
-              %label{:for => 'title'} Filter:
+              %label{:for => 'search'} Filter:
           %tr
             %td
               #filter
-                = text_field_tag :title, list_params[:title], :autocomplete => 'off'
+                = text_field_tag :search, params[:search], :autocomplete => 'off'
                 :javascript
-                  new Form.Element.DelayedObserver('title', 0.4, function(element, value) {
+                  new Form.Element.DelayedObserver('search', 0.4, function(element, value) {
                     when_starting();
                     new Ajax.Updater('ajax_update', '/admin/tiny_paper/images', {
                       asynchronous:true,
                       evalScripts:true,
                       method:'get',
                       onComplete: function(request){when_completing()},
-                      parameters: 'title=' + escape(value) + '&page=1' + '&authenticity_token=' + encodeURIComponent('#{form_authenticity_token}')
+                      parameters: 'search=' + escape(value) + '&p=1' + '&authenticity_token=' + encodeURIComponent('#{form_authenticity_token}')
                     })
                   })
                 = reset_filters_tag
@@ -32,6 +32,8 @@
   = show_flash_message
 
   #bd.clearfix
-    = render :partial => 'images_images' if list_params[:view] == "thumbnails"
-    = render :partial => 'images_titles' if list_params[:view] == "text_list"
+    = render :partial => 'images_images' if params[:view] == "thumbnails"
+    = render :partial => 'images_titles' if params[:view] == "text_list"
   = hidden_field_tag(:type, "images")
+  %p.close_link
+    = link_to "Cancel", "#", :onclick => "tinyMCEPopup.close(); return false"

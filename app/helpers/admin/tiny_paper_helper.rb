@@ -32,11 +32,11 @@ module Admin::TinyPaperHelper
     end
   end
 
-  def page_list(page)
-    "<li><a href=#{page.url}>#{page.title}</a></li>" + 
+  def page_list(page, level=1)
+    "<li><a href=\"#{page.url}\" style=\"padding-left: #{level*10}px\">#{page.title}</a></li>" + 
     page.children.collect do |child| 
       unless child.virtual? || !child.published?
-        "<li class='no_bullet'><ul> #{page_list(child)} </ul></li>"
+        "<li class='no_bullet'><ul> #{page_list(child, level + 1)} </ul></li>"
       end
     end.join
   end

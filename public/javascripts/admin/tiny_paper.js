@@ -2,14 +2,8 @@ var assetBrowser = {
   init: function() {
     $$('#assets a').each(function (s) {
       Event.observe(s, 'click', function () {
-        $$('span.image_sizes').each(function (sp) {
-          sp.hide();
-        });
         if ($('type').value == 'images' ) {
-          var span = this.next('span.image_sizes');
-          if (span) {
-            span.show();
-          }
+          assetBrowser.submit_image(this.href);
           return false; 
         }
         if ($('type').value == 'files' || $('type').value == 'pages' ) {
@@ -18,20 +12,15 @@ var assetBrowser = {
         }
       });
     });
-    $$("#sizes a").each(function (s) {
-      Event.observe(s, 'click', function () {
-        assetBrowser.submit_image(this);
-      })
-    });
   },
 
-  submit_image: function(link) {
+  submit_image: function(href) {
     var win = tinyMCEPopup.getWindowArg("window");
 
-    win.document.getElementById(tinyMCEPopup.getWindowArg("input")).value = link.href;
+    win.document.getElementById(tinyMCEPopup.getWindowArg("input")).value = href;
 
     if (win.ImageDialog.getImageData) win.ImageDialog.getImageData();
-    if (win.ImageDialog.showPreviewImage) win.ImageDialog.showPreviewImage(link.href);
+    if (win.ImageDialog.showPreviewImage) win.ImageDialog.showPreviewImage(href);
 
     tinyMCEPopup.close();
   },
@@ -111,3 +100,4 @@ function when_completing () {
     })
   }
 }
+
