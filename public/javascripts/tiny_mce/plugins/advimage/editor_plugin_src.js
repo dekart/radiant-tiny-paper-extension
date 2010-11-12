@@ -2,7 +2,7 @@
  * $Id: editor_plugin_src.js 677 2008-03-07 13:52:41Z spocke $
  *
  * @author Moxiecode
- * @copyright Copyright © 2004-2008, Moxiecode Systems AB, All rights reserved.
+ * @copyright Copyright ï¿½ 2004-2008, Moxiecode Systems AB, All rights reserved.
  */
 
 (function() {
@@ -16,8 +16,8 @@
 
 				ed.windowManager.open({
 					file : url + '/image.htm',
-					width : 480 + parseInt(ed.getLang('advimage.delta_width', 0)),
-					height : 385 + parseInt(ed.getLang('advimage.delta_height', 0)),
+					width : 720 + parseInt(ed.getLang('advimage.delta_width', 0)),
+					height : 610 + parseInt(ed.getLang('advimage.delta_height', 0)),
 					inline : 1
 				}, {
 					plugin_url : url
