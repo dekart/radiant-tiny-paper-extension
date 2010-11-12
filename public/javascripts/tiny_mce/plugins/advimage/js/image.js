@@ -59,20 +59,20 @@ var ImageDialog = {
 			}
 		}
 
-    // Setup browse button
-    document.getElementById('srcbrowsercontainer').innerHTML = getBrowserHTML('srcbrowser','src','image','theme_advanced_image');
-    if (isVisible('srcbrowser'))
-     document.getElementById('src').style.width = '260px';
-    
-    // Setup browse button
-    document.getElementById('onmouseoversrccontainer').innerHTML = getBrowserHTML('overbrowser','onmouseoversrc','image','theme_advanced_image');
-    if (isVisible('overbrowser'))
-     document.getElementById('onmouseoversrc').style.width = '260px';
-    
-    // Setup browse button
-    document.getElementById('onmouseoutsrccontainer').innerHTML = getBrowserHTML('outbrowser','onmouseoutsrc','image','theme_advanced_image');
-    if (isVisible('outbrowser'))
-     document.getElementById('onmouseoutsrc').style.width = '260px';
+		// Setup browse button
+		document.getElementById('srcbrowsercontainer').innerHTML = getBrowserHTML('srcbrowser','src','image','theme_advanced_image');
+		if (isVisible('srcbrowser'))
+			document.getElementById('src').style.width = '260px';
+
+		// Setup browse button
+		document.getElementById('onmouseoversrccontainer').innerHTML = getBrowserHTML('overbrowser','onmouseoversrc','image','theme_advanced_image');
+		if (isVisible('overbrowser'))
+			document.getElementById('onmouseoversrc').style.width = '260px';
+
+		// Setup browse button
+		document.getElementById('onmouseoutsrccontainer').innerHTML = getBrowserHTML('outbrowser','onmouseoutsrc','image','theme_advanced_image');
+		if (isVisible('outbrowser'))
+			document.getElementById('onmouseoutsrc').style.width = '260px';
 
 		// If option enabled default contrain proportions to checked
 		if (ed.getParam("advimage_constrain_proportions", true))
@@ -272,6 +272,7 @@ var ImageDialog = {
 			cl = tinyMCEPopup.editor.dom.getClasses();
 
 		if (cl.length > 0) {
+			lst.options.length = 0;
 			lst.options[lst.options.length] = new Option(tinyMCEPopup.getLang('not_set'), '');
 
 			tinymce.each(cl, function(o) {
@@ -285,6 +286,7 @@ var ImageDialog = {
 		var dom = tinyMCEPopup.dom, lst = dom.get(id), v, cl;
 
 		l = window[l];
+		lst.options.length = 0;
 
 		if (l && l.length > 0) {
 			lst.options[lst.options.length] = new Option('', '');
@@ -412,7 +414,7 @@ var ImageDialog = {
 			}
 
 			// Merge
-			dom.get('style').value = dom.serializeStyle(dom.parseStyle(img.style.cssText));
+			dom.get('style').value = dom.serializeStyle(dom.parseStyle(img.style.cssText), 'img');
 		}
 	},
 
